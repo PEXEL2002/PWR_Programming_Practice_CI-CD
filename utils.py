@@ -21,3 +21,14 @@ def divide(a: int, b: int) -> float:
     if b == 0:
         raise ValueError("Cannot divide by zero.")
     return a / b
+
+
+def binary(a):
+    """Convert a decimal number to binary."""
+    if a > 100:
+        raise ValueError("Cannot convert number over 100")
+    if a == 0:
+        raise ValueError("Cannot convert 0 to binary")
+    if not isinstance(a, int) or a < 0:
+        raise ValueError("Cannot convert not natural number")
+    return bin(a)[2:]
