@@ -25,6 +25,11 @@ def test_multiply(a, b, expected):
 def test_divide(a, b, expected):
     assert utils.divide(a, b) == expected
 
+@pytest.mark.parametrize("a, b, expected",[(1, 0, "Cannot divide by zero."), (2, 0, "Cannot divide by zero.")])
+def test_divide_by_zero(a, b, expected):
+    with pytest.raises(ValueError) as excinfo:
+        utils.divide(a, b)
+    assert str(excinfo.value) == expected
 
 @pytest.mark.parametrize("n, expected", [(1, "1"), (2, "10"), (3, "11"), (4, "100")])
 def test_to_binary(n, expected):
