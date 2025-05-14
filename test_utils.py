@@ -34,3 +34,34 @@ def test_divide_by_zero(a, b, expected):
     with pytest.raises(ValueError) as excinfo:
         utils.divide(a, b)
     assert str(excinfo.value) == expected
+
+
+@pytest.mark.parametrize(
+    "a, expected", [(0, 0), (1, 1), (2, 10), (3, 11), (4, 100), (5, 101)]
+)
+def test_binary(a, expected):
+    assert utils.binary(a) == expected
+
+
+@pytest.mark.parametrize(
+    "a, expected",
+    [(1100, "Cannot convert number over 100"), (0, "Cannot convert 0 to binary")],
+)
+def test_binary_invalid(a, expected):
+    with pytest.raises(ValueError) as excinfo:
+        utils.binary(a)
+    assert str(excinfo.value) == expected
+
+
+@pytest.mark.parametrize(
+    "a, expected",
+    [
+        (-1, "Cannot convert not natural number"),
+        (0.5, "Cannot convert not natural number"),
+        (5.123, "Cannot convert not natural number"),
+    ],
+)
+def test_binary_is_natural(a, expected):
+    with pytest.raises(ValueError) as excinfo:
+        utils.binary(a)
+    assert str(excinfo.value) == expected
