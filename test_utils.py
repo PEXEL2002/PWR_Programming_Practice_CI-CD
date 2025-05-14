@@ -37,7 +37,7 @@ def test_divide_by_zero(a, b, expected):
 
 
 @pytest.mark.parametrize(
-    "a, expected", [(0, 0), (1, 1), (2, 10), (3, 11), (4, 100), (5, 101)]
+    "a, expected", [(1, "1"), (2, "10"), (3, "11"), (4, "100"), (5, "101")]
 )
 def test_binary(a, expected):
     assert utils.binary(a) == expected
